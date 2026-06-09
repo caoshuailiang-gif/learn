@@ -21,6 +21,7 @@ import pathlib
 import numpy as np
 import pandas as pd
 import scanpy as sc
+from scipy import sparse
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 RAW = ROOT / "data" / "raw"
@@ -46,7 +47,12 @@ def load_sample(name: str, path: pathlib.Path) -> sc.AnnData:
     orig_cluster = df.pop("CLUSTER").astype(str) if "CLUSTER" in df.columns else None
     # Barcodes are integers in the file; make them unique per sample as strings.
     df.index = [f"{name}_{bc}" for bc in df.index]
-    adata = sc.AnnData(df.astype(np.float32))
+    # Counts are sparse (mostly zeros); store as CSR to keep memory/disk small.
+    adata = sc.AnnData(
+        X=sparse.csr_matrix(df.values.astype(np.float32)),
+        obs=pd.DataFrame(index=df.index),
+        var=pd.DataFrame(index=df.columns),
+    )
     adata.obs["sample"] = name
     if orig_cluster is not None:
         adata.obs["orig_cluster"] = orig_cluster.values
