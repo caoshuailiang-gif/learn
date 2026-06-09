@@ -1,0 +1,4 @@
+# Raw data (large, re-downloadable via code/00_download_data.sh; CGGA/GEO blocked by network policy)
+data/
+# Conda env lives outside repo; spec is in env/environment.yml
+results/

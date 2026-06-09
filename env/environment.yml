@@ -1,0 +1,41 @@
+name: gbm
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.11
+  - r-base=4.3
+  # scRNA
+  - r-seurat
+  - r-seuratobject
+  # bulk DE
+  - bioconductor-limma
+  - bioconductor-deseq2
+  - bioconductor-edger
+  # survival
+  - r-survival
+  - r-survminer
+  # signatures / pathways / immune
+  - bioconductor-gsva
+  - bioconductor-gseabase
+  - bioconductor-clusterprofiler
+  - bioconductor-org.hs.eg.db
+  - bioconductor-fgsea
+  # utils
+  - r-data.table
+  - r-matrix
+  - r-ggplot2
+  - r-pheatmap
+  - r-dplyr
+  - r-tidyr
+  - r-readr
+  - r-optparse
+  # python
+  - scanpy
+  - anndata
+  - leidenalg
+  - python-igraph
+  - h5py
+  - pandas
+  - numpy
+  - scipy
