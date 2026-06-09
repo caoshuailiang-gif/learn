@@ -2,3 +2,5 @@
 data/
 # Conda env lives outside repo; spec is in env/environment.yml
 results/
+# Local Python venv used to run the scanpy pipeline
+.venv/
